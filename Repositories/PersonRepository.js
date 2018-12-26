@@ -1,0 +1,25 @@
+const Person = require('../Models/Person')
+class PersonRepository {
+    savePerson(person) {
+        return person.save((error, person) => {
+            return {
+                status: "success",
+                message: 'New person created!',
+                data: person,
+            };
+        });
+    }
+    findBirthdayOfDay(date) {
+        return Person.find().where('birthday.day').equals(date.getDate()).and('birthday.month.number').equals(date.getMonth()+1);
+    }
+
+   findPreviusBirthdays(getOrderLessThan) {
+       return Person.find().where('order').lt(getOrderLessThan).limit(2).sort({order: -1});
+    }
+    
+    findNextBirthdays(getOrderGreaterThan) {
+        return Person.find().where('order').gt(getOrderGreaterThan).limit(2).sort({order: 1});
+    }
+}
+
+module.exports = PersonRepository;
