@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.send('Hello World with Nw News'));
+app.get('/', (req, res) => res.send('Hello World with Nw Newsa'));
 
 app.use('/api', routes)
 
