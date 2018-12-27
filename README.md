@@ -50,11 +50,11 @@ Now you can run the following command to run the application.
 An example on how to use the application API.
 In this example I will be using [Postman](https://www.getpostman.com/) to test the API.
 
-1) Select 'POST' request
+# 1) Select 'POST' request
 
-2) Enter the URL: http://localhost:8080/api/person/save
+# 2) Enter the URL: http://localhost:8080/api/person/save
 
-3) Click on 'Headers' and add one param:
+# 3) Click on 'Headers' and add one param:
 	3.1) Key: 'Accept'; Value: 'application/json'
 
 4) Click on 'Body', select 'raw':
@@ -91,7 +91,7 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
 11) Enter the URL: http://localhost:8080/api/news/save
 
 12) Click on 'Headers' and add one param:
-	3.1) Key: 'Accept'; Value: 'application/json'
+	12.1) Key: 'Accept'; Value: 'application/json'
 
 13) Click on 'Body', select 'raw':
 ```
