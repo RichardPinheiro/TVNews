@@ -15,8 +15,9 @@ class PersonService {
         person.picture = req.body.picture;
         person.backgrounPicture = req.body.backgrounPicture;
         person.qrcode = req.body.qrcode;
-    
-        return personRepository.savePerson(person);
+
+        personRepository.savePerson(person);
+        return person;
     }
 
     async findBirthdayOfDay() {

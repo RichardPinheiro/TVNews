@@ -10,7 +10,7 @@ class PersonRepository {
         });
     }
     findBirthdayOfDay(date) {
-        return Person.find().where('birthday.day').equals(date.getDate()).and('birthday.month.number').equals(date.getMonth()+1);
+        return Person.find().where('birthday.day').equals(date.getDate()).where('birthday.month.number').equals(date.getMonth()+1);
     }
 
    findPreviusBirthdays(getOrderLessThan) {
