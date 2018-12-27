@@ -1,22 +1,21 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let mongoose = require('mongoose');
-let app = express();
-let routes = require("./routes/routes");
-let port = process.env.PORT || 8080;
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const app = express();
+const cors = require('cors');
+const routes = require("./routes/routes");
+const Config = require('./Config');
+const { name } = require('./package.json');
 
-mongoose.connect('mongodb://localhost/dbnwnews');
-
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
+mongoose.connect(Config.connectDB);
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors(Config.corsOptions));
 app.use(bodyParser.json());
-
-app.get('/', (req, res) => res.send('Hello World with Nw Newsa'));
-
 app.use('/api', routes)
 
-app.listen(port, () => {
-    console.log("Running  on port " + port);
+app.get('/', (req, res) => res.send('Hello World with Nw News Api'));
+
+
+app.listen(Config.port, () => {
+    console.log(`${name} server running on ${Config.port}`);
 });

@@ -1,0 +1,15 @@
+{
+  "app": {
+    "port": 8080,
+    "key": "secret",
+    "env": "development",
+    "protocol": "http",
+    "host": "localhost"
+  },
+
+  "appUrl": "http://localhost:8080",
+
+  "database": {
+    "mongodb": "mongodb://localhost:27017/nwnewsdb"
+  }
+}
