@@ -50,7 +50,6 @@ Now you can run the following command to run the application.
 An example on how to use the application API.
 In this example I will be using [Postman](https://www.getpostman.com/) to test the API.
 
-```
 1) Select 'POST' request
 
 2) Enter the URL: http://localhost:8080/api/person/save
@@ -59,7 +58,8 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
 	3.1) Key: 'Accept'; Value: 'application/json'
 
 4) Click on 'Body', select 'raw':
-	'{
+```
+	{
         "nickname" : "nickname",
         "name" : "name",
         "birthday" : {
@@ -74,7 +74,8 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
         "picture" : "picture.jpg",
         "backgrounPicture" : "backgrounPicture.jpg",
         "qrcode" : "qrcode"
-    }'
+    }
+```
 5) Click the 'Send' button
 
 6) Open a new request window and select the 'GET' request and enter the URL: http://localhost:8080/api/birthday/day for example.
@@ -93,7 +94,8 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
 	3.1) Key: 'Accept'; Value: 'application/json'
 
 13) Click on 'Body', select 'raw':
-    '{
+```
+    {
         "title": "title",
         "description": "description",
         "published": {
@@ -104,15 +106,14 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
             }
         },
         "qrcode": "qrcode"
-    }'
+    }
+```
 
 14) Click the 'Send' button.
 
 15) Open a new request window and select the 'GET' request and enter the URL: http://localhost:8080/api/news for example.
 
 14) Click the 'Send' button and you should see the news of company.
-
-```
 
 ## Built With
 
