@@ -120,7 +120,7 @@ mongodb
 
 ## Built With
 
-* [express](version: ^4.16.4) - The Node framework used
+* [Express](https://expressjs.com/pt-br/) - The Node framework used
 
 ## Authors
 
