@@ -1,10 +1,10 @@
 # Api Nw News
 
-Api Nw news provides birthdays for all partners, internal company news and more
+* Api Nw news provides birthdays for all partners, internal company news and more
 
 ### Prerequisites
 
-The following items are necessary to run this application.
+* The following items are necessary to run this application.
 
 ```
 node
@@ -15,14 +15,14 @@ mongodb
 
 ### Installing
 
-Clone this repository. Run the following steps/commands:
+* Clone this repository. Run the following steps/commands:
 
 ```
 1) Run: npm install
 2) In folder config rename the file default.json to development.json
 ```
 
-In folder config Create or set database and enter the details in your development.json like:
+* In folder config Create or set database and enter the details in your development.json like:
 
 ```
   "database": {
@@ -40,7 +40,7 @@ In folder config Create or set database and enter the details in your developmen
 
 ## Deployment
 
-Now you can run the following command to run the application.
+* Now you can run the following command to run the application.
 ```
 1) Run: nodemon app.js or node app.js
 
@@ -49,15 +49,16 @@ Now you can run the following command to run the application.
 ## API
 An example on how to use the application API.
 In this example I will be using [Postman](https://www.getpostman.com/) to test the API.
+```
+1) Select 'POST' request
 
-# 1) Select 'POST' request
+2) Enter the URL: http://localhost:8080/api/person/save
 
-# 2) Enter the URL: http://localhost:8080/api/person/save
-
-# 3) Click on 'Headers' and add one param:
+3) Click on 'Headers' and add one param:
 	3.1) Key: 'Accept'; Value: 'application/json'
 
 4) Click on 'Body', select 'raw':
+```
 ```
 	{
         "nickname" : "nickname",
@@ -75,6 +76,7 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
         "backgrounPicture" : "backgrounPicture.jpg",
         "qrcode" : "qrcode"
     }
+```
 ```
 5) Click the 'Send' button
 
@@ -95,6 +97,7 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
 
 13) Click on 'Body', select 'raw':
 ```
+```
     {
         "title": "title",
         "description": "description",
@@ -108,12 +111,13 @@ In this example I will be using [Postman](https://www.getpostman.com/) to test t
         "qrcode": "qrcode"
     }
 ```
-
+```
 14) Click the 'Send' button.
 
 15) Open a new request window and select the 'GET' request and enter the URL: http://localhost:8080/api/news for example.
 
 14) Click the 'Send' button and you should see the news of company.
+```
 
 ## Built With
 
