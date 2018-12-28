@@ -7,7 +7,8 @@ const routes = require("./routes/routes");
 const Config = require('./Config');
 const { name } = require('./package.json');
 
-mongoose.connect(Config.connectDB);
+mongoose.connect(Config.connectDB, { useNewUrlParser: true });
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors(Config.corsOptions));
 app.use(bodyParser.json());
