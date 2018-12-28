@@ -107,7 +107,7 @@ mongodb
 
 15) Open a new request window and select the 'GET' request and enter the URL: http://localhost:8080/api/news for example.
 
-14) Click the 'Send' button and you should see the news of company.
+16) Click the 'Send' button and you should see the news of company.
 ```
 
 ## Built With
