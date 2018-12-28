@@ -15,7 +15,6 @@ app.use('/api', routes)
 
 app.get('/', (req, res) => res.send('Hello World with Nw News Api'));
 
-
 app.listen(Config.port, () => {
     console.log(`${name} server running on ${Config.port}`);
 });

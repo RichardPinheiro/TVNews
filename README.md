@@ -26,16 +26,8 @@ mongodb
 
 ```
   "database": {
-    "mongodb": "mongodb://localhost:27017/dbname",
-    "mysql": {
-      "host": "host",
-      "port": 3306,
-      "database": "dbname",
-      "username": "",
-      "password": ""
-    }
+    "mongodb": "mongodb://localhost:27017/nwnews",
   }
-
 ```
 
 ## Deployment
