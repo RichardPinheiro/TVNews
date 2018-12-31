@@ -1,43 +1,43 @@
-const PersonRepository = require('../Repositories/PersonRepository');
+const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
-const personRepository = new PersonRepository();
-const person = new Person();
-let date = new Date();
+const personRepository = new PersonRepository()
+const person = new Person()
+let date = new Date()
 
 class PersonService {
     create(req, res) {
-        person.nickname = req.body.nickname;
-        person.name = req.body.name;
-        person.birthday = req.body.birthday;
-        person.order = ((req.body.birthday.month.number * 100) + req.body.birthday.day);
-        person.phone = req.body.phone;
-        person.squad = req.body.squad;
-        person.picture = req.body.picture;
-        person.backgrounPicture = req.body.backgrounPicture;
-        person.qrcode = req.body.qrcode;
+        person.nickname = req.body.nickname
+        person.name = req.body.name
+        person.birthday = req.body.birthday
+        person.order = ((req.body.birthday.month.number * 100) + req.body.birthday.day)
+        person.phone = req.body.phone
+        person.squad = req.body.squad
+        person.picture = req.body.picture
+        person.backgrounPicture = req.body.backgrounPicture
+        person.qrcode = req.body.qrcode
 
-        personRepository.savePerson(person);
-        return person;
+        personRepository.savePerson(person)
+        return person
     }
 
     async findBirthdayOfDay() {
         try {
-            return await personRepository.findBirthdayOfDay(date);
+            return await personRepository.findBirthdayOfDay(date)
         } catch(error) {
-            throw error;
+            throw error
         }
     }
 
     async findOthersBirthdays() {
         try {
-            let previusBirthdays = await personRepository.findPreviusBirthdays(this.getOrderLessThan());
-            let nextBirthdays = await personRepository.findNextBirthdays(this.getOrderGreaterThan());
+            let previusBirthdays = await personRepository.findPreviusBirthdays(this.getOrderLessThan())
+            let nextBirthdays = await personRepository.findNextBirthdays(this.getOrderGreaterThan())
             return {
                 previous: previusBirthdays,
                 next: nextBirthdays
             }
         } catch(error) {
-            throw error;
+            throw error
         }
     }
 
@@ -63,4 +63,4 @@ class PersonService {
 
 }
 
-module.exports = PersonService;
+module.exports = PersonService

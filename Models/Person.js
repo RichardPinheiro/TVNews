@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 var personSchema = mongoose.Schema({
     nickname: { type: String, required: true },
@@ -10,9 +10,9 @@ var personSchema = mongoose.Schema({
     picture: { type: String, required: true },
     backgrounPicture: { type: String, required: true },
     qrcode: { type: String, required: true }
-});
+})
 
-var Person = module.exports = mongoose.model('person', personSchema);
+var Person = module.exports = mongoose.model('person', personSchema)
 module.exports.get = (callback, limit) => {
-    Person.find(callback).limit(limit);
+    Person.find(callback).limit(limit)
 }

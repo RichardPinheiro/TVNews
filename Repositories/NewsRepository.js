@@ -6,13 +6,13 @@ class NewsRepository {
                 status: "success",
                 message: 'New news has created!',
                 data: news,
-            };
-        });
+            }
+        })
     }
     
     findNews() {
-        return News.find();
+        return News.find()
     }
 }
 
-module.exports = NewsRepository;
+module.exports = NewsRepository

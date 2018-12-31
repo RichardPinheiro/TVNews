@@ -1,4 +1,4 @@
-const config = require('config');
+const config = require('config')
 
 /**
  * @param {String} name name from property
@@ -6,7 +6,7 @@ const config = require('config');
  * @returns {any} The property if exist
  */
 function getProperty(name, fallback = null) {
-    return config.has(name) ? config.get(name) : fallback;
+    return config.has(name) ? config.get(name) : fallback
 }
 
 /**
@@ -19,7 +19,7 @@ class Config {
      * @memberof Config
      */
     static get port() {
-        return getProperty("app.port", 8080);
+        return getProperty("app.port", 8080)
     }
 
     /**
@@ -28,7 +28,7 @@ class Config {
      * @memberof Config
      */
     static get env() {
-        return getProperty("app.env", process.env.NODE_ENV || "development");
+        return getProperty("app.env", process.env.NODE_ENV || "development")
     }
 
     /**
@@ -37,7 +37,7 @@ class Config {
      * @memberof Config
      */
     static get protocol() {
-        return getProperty('app.protocol', 'http');
+        return getProperty('app.protocol', 'http')
     }
 
     /**
@@ -46,7 +46,7 @@ class Config {
      * @memberof Config
      */
     static get secretKey() {
-        return getProperty('app.key', 'secret');
+        return getProperty('app.key', 'secret')
     }
 
     /**
@@ -55,7 +55,7 @@ class Config {
      * @memberof Config
      */
     static get protocol() {
-        return getProperty("app.protocol", "http");
+        return getProperty("app.protocol", "http")
     }
 
     /**
@@ -64,7 +64,7 @@ class Config {
      * @memberof Config
      */
     static get host() {
-        return getProperty("app.host", "localhost");
+        return getProperty("app.host", "localhost")
     }
 
     /**
@@ -77,7 +77,7 @@ class Config {
             origins: getProperty('http.cors.origins', '*'),
             headers: getProperty('http.cors.headers', []),
             credentials: getProperty('http.cors.credentials', true),
-        };
+        }
     }
 
     /**
@@ -99,4 +99,4 @@ class Config {
     }
 }
 
-module.exports = Config;
+module.exports = Config
