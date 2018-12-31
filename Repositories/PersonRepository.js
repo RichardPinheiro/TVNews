@@ -1,13 +1,7 @@
 const Person = require('../Models/Person')
 class PersonRepository {
     savePerson(person) {
-        return person.save((error, person) => {
-            return {
-                status: "success",
-                message: 'New person created!',
-                data: person,
-            }
-        })
+        return person.save((error, person) => { return person })
     }
     findBirthdayOfDay(date) {
         return Person.find().where('birthday.day').equals(date.getDate()).where('birthday.month.number').equals(date.getMonth()+1)

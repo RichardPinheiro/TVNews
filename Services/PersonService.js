@@ -1,11 +1,11 @@
 const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
 const personRepository = new PersonRepository()
-const person = new Person()
 let date = new Date()
 
 class PersonService {
     create(req, res) {
+        let person = new Person()
         person.nickname = req.body.nickname
         person.name = req.body.name
         person.birthday = req.body.birthday
@@ -15,8 +15,8 @@ class PersonService {
         person.picture = req.body.picture
         person.backgrounPicture = req.body.backgrounPicture
         person.qrcode = req.body.qrcode
-
         personRepository.savePerson(person)
+
         return person
     }
 
