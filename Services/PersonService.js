@@ -30,8 +30,17 @@ class PersonService {
 
     async findOthersBirthdays() {
         try {
-            let previusBirthdays = await personRepository.findPreviusBirthdays(this.getOrderLessThan())
-            let nextBirthdays = await personRepository.findNextBirthdays(this.getOrderGreaterThan())
+            let previusBirthdays = await personRepository.findPreviusBirthdays(this.getDefaultOrder())
+            let nextBirthdays = await personRepository.findNextBirthdays(this.getDefaultOrder())
+
+            if(!previusBirthdays.length) {
+                previusBirthdays = await personRepository.findPreviusBirthdays(this.getOrderLessThan())
+            }
+
+            if(!nextBirthdays.length) {
+                nextBirthdays = await personRepository.findNextBirthdays(this.getOrderGreaterThan())
+            }
+
             return {
                 previous: previusBirthdays,
                 next: nextBirthdays
@@ -42,19 +51,11 @@ class PersonService {
     }
 
     getOrderLessThan() {
-        if ((date.getMonth()+1) == 1 && date.getDate() == 1) {
-            return ((12 * 100) + 31)
-        }
-
-        return this.getDefaultOrder()
+        return ((12 * 100) + 31)
     }
 
     getOrderGreaterThan() {
-        if ((date.getMonth()+1) == 12 && date.getDate() == 31) {
-            return ((1 * 100) + 1)
-        }
-
-        return this.getDefaultOrder()
+        return ((1 * 100) + 1)
     }
 
     getDefaultOrder() {
