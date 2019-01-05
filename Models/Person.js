@@ -1,6 +1,6 @@
-var mongoose = require('mongoose')
+let  mongoose = require('mongoose')
 
-var personSchema = mongoose.Schema({
+let personSchema = mongoose.Schema({
     nickname: { type: String, required: true },
     name: { type: String, required: true },
     birthday: { type: Object, required: true },
@@ -12,7 +12,7 @@ var personSchema = mongoose.Schema({
     qrcode: { type: String, required: true }
 })
 
-var Person = module.exports = mongoose.model('person', personSchema)
+let Person = module.exports = mongoose.model('person', personSchema)
 module.exports.get = (callback, limit) => {
     Person.find(callback).limit(limit)
 }

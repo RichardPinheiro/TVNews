@@ -5,8 +5,6 @@ let newsController = require('../Controllers/NewsController')
 router.route('/person/save').post(personController.create)
 router.route('/birthday/day').get(personController.birthdaysOfDay)
 router.route('/birthday/others').get(personController.othersBirthdays)
-
-//news
 router.route('/news/save').post(newsController.create)
 router.route('/news').get(newsController.news)
 
