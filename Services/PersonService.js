@@ -2,6 +2,9 @@ const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
 const personRepository = new PersonRepository()
 let date = new Date()
+const defaultOrder = (((date.getMonth()+1) * 100) + date.getDate())
+const getOrderOfDecemberMonth = ((12 * 100) + 31)
+const getOrderOfJenuaryMonth = ((1 * 100) + 1)
 
 class PersonService {
     create(req, res) {
@@ -33,33 +36,33 @@ class PersonService {
             let previusBirthdays = await personRepository.findPreviusBirthdays(this.getDefaultOrder())
             let nextBirthdays = await personRepository.findNextBirthdays(this.getDefaultOrder())
 
-            if(!previusBirthdays.length) {
-                previusBirthdays = await personRepository.findPreviusBirthdays(this.getOrderLessThan())
-            }
-
-            if(!nextBirthdays.length) {
-                nextBirthdays = await personRepository.findNextBirthdays(this.getOrderGreaterThan())
-            }
-
             return {
-                previous: previusBirthdays,
-                next: nextBirthdays
+                previous: await this.getPreviusBirthdays(previusBirthdays),
+                next: await this.getNextBirthdays(nextBirthdays)
             }
         } catch(error) {
             throw error
         }
     }
 
+    getPreviusBirthdays(previusBirthdays) {
+        return previusBirthdays.length ? previusBirthdays : personRepository.findPreviusBirthdays(this.getOrderLessThan())
+    }
+
+    getNextBirthdays(nextBirthdays) {
+        return nextBirthdays.length ? nextBirthdays : personRepository.findNextBirthdays(this.getOrderGreaterThan())
+    }
+
     getOrderLessThan() {
-        return ((12 * 100) + 31)
+        return getOrderOfDecemberMonth
     }
 
     getOrderGreaterThan() {
-        return ((1 * 100) + 1)
+        return getOrderOfJenuaryMonth
     }
 
     getDefaultOrder() {
-        return (((date.getMonth()+1) * 100) + date.getDate())
+        return defaultOrder
     }
 
 }
