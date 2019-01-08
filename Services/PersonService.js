@@ -2,9 +2,9 @@ const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
 const personRepository = new PersonRepository()
 let date = new Date()
-const defaultOrder = (((date.getMonth()+1) * 100) + date.getDate())
-const getOrderOfDecemberMonth = ((12 * 100) + 31)
-const getOrderOfJenuaryMonth = ((1 * 100) + 1)
+const currentMonthOrder = (((date.getMonth()+1) * 100) + date.getDate())
+const orderOfDecemberMonth = ((12 * 100) + 31)
+const orderOfJenuaryMonth = ((1 * 100) + 1)
 
 class PersonService {
     create(req, res) {
@@ -54,15 +54,15 @@ class PersonService {
     }
 
     getOrderLessThan() {
-        return getOrderOfDecemberMonth
+        return orderOfDecemberMonth
     }
 
     getOrderGreaterThan() {
-        return getOrderOfJenuaryMonth
+        return orderOfJenuaryMonth
     }
 
     getDefaultOrder() {
-        return defaultOrder
+        return currentMonthOrder
     }
 
 }
