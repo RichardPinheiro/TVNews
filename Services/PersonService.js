@@ -1,8 +1,6 @@
 const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
 const personRepository = new PersonRepository()
-let date = new Date()
-const currentMonthOrder = (((date.getMonth()+1) * 100) + date.getDate())
 const orderOfDecemberMonth = ((12 * 100) + 31)
 const orderOfJenuaryMonth = ((1 * 100) + 1)
 
@@ -63,7 +61,12 @@ class PersonService {
     }
 
     getDefaultOrder() {
-        return currentMonthOrder
+        return this.getCurrentMonthOrther()
+    }
+
+    getCurrentMonthOrther() {
+        let date = new Date()
+        return (((date.getMonth()+1) * 100) + date.getDate())
     }
 
 }
