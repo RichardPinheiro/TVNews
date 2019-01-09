@@ -36,7 +36,7 @@ class PersonService {
             let nextBirthdays = await personRepository.findNextBirthdays(this.getDefaultOrder())
 
             return {
-                previous: await this.getPreviusBirthdays(previusBirthdays),
+                previous: await this.getPreviusBirthdays(previusBirthdays).sort(),
                 next: await this.getNextBirthdays(nextBirthdays)
             }
         } catch(error) {
