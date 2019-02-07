@@ -1,10 +1,12 @@
 const Person = require('../Models/Person')
 class PersonRepository {
     savePerson(person) {
-        return person.save((error, person) => { return person })
+        return person.save((error, person) => {
+            return person
+        })
     }
-    findBirthdayOfDay(date) {
-        return Person.find().where('birthday.day').equals(date.getDate()).where('birthday.month.number').equals(date.getMonth()+1)
+    findBirthdayOfDay(day, month) {
+        return Person.find().where('birthday.day').equals(day).where('birthday.month.number').equals(month)
     }
 
    findPreviusBirthdays(getOrderLessThan) {
