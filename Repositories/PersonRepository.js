@@ -5,18 +5,8 @@ class PersonRepository {
             return person
         })
     }
-<<<<<<< HEAD
-
-    findPerson() {
-        return Person.find()
-    }
-
-    findBirthdayOfDay(date) {
-        return Person.find().where('birthday.day').equals(date.getDate()).where('birthday.month.number').equals(date.getMonth()+1)
-=======
     findBirthdayOfDay(day, month) {
         return Person.find().where('birthday.day').equals(day).where('birthday.month.number').equals(month)
->>>>>>> 1751834b1f85a96b4200be962f28855170f850c2
     }
 
    findPreviusBirthdays(getOrderLessThan) {
