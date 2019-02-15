@@ -21,6 +21,14 @@ class PersonService {
         return person
     }
 
+    async findPerson() {
+        try {
+            return await personRepository.findPerson()
+        } catch(error) {
+            throw error
+        }
+    }
+
     async findBirthdayOfDay() {
         let date = new Date()
         try {

@@ -3,6 +3,11 @@ class PersonRepository {
     savePerson(person) {
         return person.save((error, person) => { return person })
     }
+
+    findPerson() {
+        return Person.find()
+    }
+
     findBirthdayOfDay(date) {
         return Person.find().where('birthday.day').equals(date.getDate()).where('birthday.month.number').equals(date.getMonth()+1)
     }
