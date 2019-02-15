@@ -1,3 +1,4 @@
+const moment = require('moment')
 const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
 const personRepository = new PersonRepository()
@@ -32,7 +33,12 @@ class PersonService {
     async findBirthdayOfDay() {
         let date = new Date()
         try {
-            return await personRepository.findBirthdayOfDay(date)
+            let birthDays = await personRepository.findBirthdayOfDay(moment(date).date(), moment(date).month() +1)
+            if(moment(date).day() === 5) {
+                birthDays.push(...await personRepository.findBirthdayOfDay(moment(date).date() +1, moment(date).month() +1))
+                birthDays.push(...await personRepository.findBirthdayOfDay(moment(date).date() +2, moment(date).month() +1))
+            } 
+            return birthDays
         } catch(error) {
             throw error
         }
