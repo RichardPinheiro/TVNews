@@ -5,6 +5,9 @@ class PersonRepository {
             return person
         })
     }
+   findPerson() {
+        return Person.find()
+    }
     findBirthdayOfDay(day, month) {
         return Person.find().where('birthday.day').equals(day).where('birthday.month.number').equals(month)
     }
