@@ -5,6 +5,7 @@ const phrasesController = require('../Controllers/PhrasesController')
 
 router.route('/person/save').post(personController.create)
 router.route('/person').get(personController.find)
+router.route('/person/:id').delete(personController.deleteOne)
 router.route('/birthday/day').get(personController.birthdaysOfDay)
 router.route('/birthday/others').get(personController.othersBirthdays)
 router.route('/news/save').post(newsController.create)

@@ -6,8 +6,11 @@ exports.create = (req, res) => {
 }
 
 exports.find = async (req, res) => {
-	//trazer todas as informacoes dos usuarios cadastrados no mongo
 	res.json(await personService.findPerson())
+}
+
+exports.deleteOne = async (req, res) => {
+	res.json(await personService.deleteOnePerson(req.params.id))
 }
 
 exports.birthdaysOfDay = async (req, res) => {

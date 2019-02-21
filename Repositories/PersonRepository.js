@@ -8,6 +8,9 @@ class PersonRepository {
    findPerson() {
         return Person.find()
     }
+    deleteOnePerson(id) {
+        return Person.deleteOne({ _id: id })
+    }
     findBirthdayOfDay(day, month) {
         return Person.find().where('birthday.day').equals(day).where('birthday.month.number').equals(month)
     }

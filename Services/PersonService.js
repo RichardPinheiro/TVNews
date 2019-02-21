@@ -24,7 +24,15 @@ class PersonService {
 
     async findPerson() {
         try {
-            return await personRepository.findPerson()
+            return personRepository.findPerson()
+        } catch(error) {
+            throw error
+        }
+    }
+    
+    async deleteOnePerson(id) {
+        try {
+            return personRepository.deleteOnePerson(id)
         } catch(error) {
             throw error
         }
