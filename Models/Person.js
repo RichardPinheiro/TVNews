@@ -7,9 +7,9 @@ let personSchema = mongoose.Schema({
     order: { type: Number },
     phone: { type: String, required: true }, 
     squad: { type: String, required: true },
-    picture: { type: String, required: true },
-    backgrounPicture: { type: String, required: true },
-    qrcode: { type: String, required: true }
+    picture: { type: String },
+    backgrounPicture: { type: String },
+    qrcode: { type: String }
 })
 
 let Person = module.exports = mongoose.model('person', personSchema)

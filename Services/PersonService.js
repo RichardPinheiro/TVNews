@@ -1,12 +1,31 @@
 const moment = require('moment')
+const QRCode = require('qrcode')
 const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
+const FilesService = require('../Services/FilesService')
+const Config = require('../Config')
+
+const filesService = new FilesService()
 const personRepository = new PersonRepository()
 const orderOfDecemberMonth = ((12 * 100) + 31)
 const orderOfJenuaryMonth = ((1 * 100) + 1)
 
+const getUrlFromFileId = (fileId) => {
+    if (fileId.toLowerCase().indexOf('https://') !== -1) return fileId
+    return `${Config.appUrl}/api/files/${fileId}/serve`
+}
+
+const generateQRCode = async (phone, nickname) => {
+    try {
+      return QRCode.toDataURL(`https://api.whatsapp.com/send?phone=${phone}&text=Parab%C3%A9ns,%20${nickname}`)
+    } catch (err) {
+      console.error(err)
+      return ''
+    }
+  }
+
 class PersonService {
-    create(req, res) {
+    async create(req, res) {
         let person = new Person()
         person.nickname = req.body.nickname
         person.name = req.body.name
@@ -17,14 +36,24 @@ class PersonService {
         person.picture = req.body.picture
         person.backgrounPicture = req.body.backgrounPicture
         person.qrcode = req.body.qrcode
-        personRepository.savePerson(person)
+        return personRepository.savePerson(person)
+    }
 
-        return person
+    async fillPerson(person) {
+        const picture = getUrlFromFileId(person.picture)
+        const backgrounPicture = getUrlFromFileId(person.backgrounPicture)
+        const qrcode = await generateQRCode(person.phone, person.nickname)
+        return Object.assign({}, person.toJSON(), {
+            picture,
+            backgrounPicture,
+            qrcode,
+        })
     }
 
     async findPerson() {
         try {
-            return personRepository.findPerson()
+            const people = await personRepository.findPerson()
+            return Promise.all(people.map(this.fillPerson))
         } catch(error) {
             throw error
         }
@@ -46,7 +75,7 @@ class PersonService {
                 birthDays.push(...await personRepository.findBirthdayOfDay(moment(date).date() +1, moment(date).month() +1))
                 birthDays.push(...await personRepository.findBirthdayOfDay(moment(date).date() +2, moment(date).month() +1))
             } 
-            return birthDays
+            return Promise.all(birthDays.map(this.fillPerson))
         } catch(error) {
             throw error
         }
@@ -58,8 +87,8 @@ class PersonService {
             let nextBirthdays = await personRepository.findNextBirthdays(this.getDefaultOrder())
 
             return {
-                previous: await this.getPreviusBirthdays(previusBirthdays).sort(),
-                next: await this.getNextBirthdays(nextBirthdays)
+                previous: await Promise.all(this.getPreviusBirthdays(previusBirthdays).sort().map(this.fillPerson)),
+                next: await Promise.all(this.getNextBirthdays(nextBirthdays).map(this.fillPerson))
             }
         } catch(error) {
             throw error

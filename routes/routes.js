@@ -2,6 +2,7 @@ const router = require('express').Router()
 const personController = require('../Controllers/PersonController')
 const newsController = require('../Controllers/NewsController')
 const phrasesController = require('../Controllers/PhrasesController')
+const filesController = require('../Controllers/FilesController')
 
 router.route('/person/save').post(personController.create)
 router.route('/person').get(personController.find)
@@ -12,5 +13,9 @@ router.route('/news/save').post(newsController.create)
 router.route('/news').get(newsController.news)
 router.route('/phrases/save').post(phrasesController.create)
 router.route('/phrases').get(phrasesController.phrases)
+
+router.route('/files/:fileId').get(filesController.get)
+router.route('/files').post(filesController.create)
+router.route('/files/:fileId/serve').get(filesController.serve)
 
 module.exports = router

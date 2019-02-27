@@ -10,7 +10,8 @@ const { name } = require('./package.json')
 mongoose.connect(Config.connectDB, { useNewUrlParser: true })
 
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(cors(Config.corsOptions))
+app.use(cors())
+app.options('*', cors());
 app.use(bodyParser.json())
 app.use('/api', routes)
 

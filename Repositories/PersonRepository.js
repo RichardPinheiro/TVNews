@@ -1,9 +1,15 @@
 const Person = require('../Models/Person')
 class PersonRepository {
-    savePerson(person) {
-        return person.save((error, person) => {
-            return person
-        })
+    async savePerson(person) {
+        return new Promise((resolve, reject) => {
+            person.save((error, person) => {
+                if (error) {
+                    console.log(error)
+                    return reject(error)
+                }
+                return resolve(person)
+            })
+        });
     }
    findPerson() {
         return Person.find()
