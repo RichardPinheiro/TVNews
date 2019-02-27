@@ -3,7 +3,10 @@ class FilesRepository {
     async create(file) {
         return new Promise((resolve, reject) => {
             file.save((error, file) => {
-                if (error) reject(error)
+                if (error) {
+                    console.log(error)
+                    reject(error)
+                }
                 resolve(file)    
             })
         });
