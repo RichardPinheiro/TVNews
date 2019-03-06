@@ -20,6 +20,14 @@ class PhrasesService {
         }
     }
 
+    async deleteOnePhrases(id) {
+        try {
+            return phrasesRepository.deleteOnePhrases(id)
+        } catch(error) {
+            throw error
+        }
+    }
+
  
 }
 

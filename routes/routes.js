@@ -13,6 +13,7 @@ router.route('/news/save').post(newsController.create)
 router.route('/news').get(newsController.news)
 router.route('/phrases/save').post(phrasesController.create)
 router.route('/phrases').get(phrasesController.phrases)
+router.route('/phrases/:id').delete(phrasesController.deleteOne)
 
 router.route('/files/:fileId').get(filesController.get)
 router.route('/files').post(filesController.create)

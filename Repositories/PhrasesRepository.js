@@ -7,6 +7,10 @@ class PhrasesRepository {
     findPhrases() {
         return Phrases.find()
     }
+
+    deleteOnePhrases(id) {
+        return Phrases.deleteOne({ _id: id })
+    }
 }
 
 module.exports = PhrasesRepository
