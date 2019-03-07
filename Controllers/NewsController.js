@@ -8,3 +8,7 @@ exports.create = (req, res) => {
 exports.news = async (req, res) => {
 	res.json(await newsService.findNews())
 }
+
+exports.deleteOne = async (req, res) => {
+	res.json(await newsService.deleteOneNews(req.params.id))
+}

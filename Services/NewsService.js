@@ -22,6 +22,14 @@ class NewsService {
         }
     }
 
+    async deleteOneNews(id) {
+        try {
+            return newsRepository.deleteOneNews(id)
+        } catch(error) {
+            throw error
+        }
+    }
+
  
 }
 

@@ -7,6 +7,10 @@ class NewsRepository {
     findNews() {
         return News.find()
     }
+    
+    deleteOneNews(id) {
+        return News.deleteOne({ _id: id })
+    }
 }
 
 module.exports = NewsRepository
