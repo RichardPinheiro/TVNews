@@ -1,4 +1,5 @@
 let  mongoose = require('mongoose')
+let uniqueValidator = require('mongoose-unique-validator');
 
 let personSchema = mongoose.Schema({
     nickname: { type: String, required: true },
@@ -9,10 +10,12 @@ let personSchema = mongoose.Schema({
     squad: { type: String, required: true },
     picture: { type: String },
     backgrounPicture: { type: String },
-    qrcode: { type: String }
+    qrcode: { type: String },
+    user: { type: String, required: true, unique: true }, //TODO: verificar como tornar esse atributo "unique" (verificar mongoose)
+    password: { type: String }
 })
 
-let Person = module.exports = mongoose.model('person', personSchema)
-module.exports.get = (callback, limit) => {
-    Person.find(callback).limit(limit)
-}
+let Person = mongoose.model('person', personSchema)
+module.exports = Person;
+
+personSchema.plugin(uniqueValidator);

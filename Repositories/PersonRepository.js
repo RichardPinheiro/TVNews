@@ -1,5 +1,9 @@
 const Person = require('../Models/Person')
 class PersonRepository {
+    async login(user) {
+        // TODO: buscar pessoa atraves do user
+    }
+
     async savePerson(person) {
         return new Promise((resolve, reject) => {
             person.save((error, person) => {
@@ -14,11 +18,20 @@ class PersonRepository {
    findPerson() {
         return Person.find()
     }
+
+    findOne(conditions) {
+        return Person.findOne(conditions);
+    }
     deleteOnePerson(id) {
         return Person.deleteOne({ _id: id })
     }
+
     findBirthdayOfDay(day, month) {
         return Person.find().where('birthday.day').equals(day).where('birthday.month.number').equals(month)
+    }
+
+    updatePerson(id, data) {
+        return Person.findOneAndUpdate({_id: id}, data, {new: true, upsert: true})
     }
 
    findPreviusBirthdays(getOrderLessThan) {

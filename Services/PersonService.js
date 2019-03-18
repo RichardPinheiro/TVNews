@@ -1,5 +1,7 @@
 const moment = require('moment')
 const QRCode = require('qrcode')
+const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 const PersonRepository = require('../Repositories/PersonRepository')
 const Person = require('../Models/Person')
 const FilesService = require('../Services/FilesService')
@@ -25,7 +27,22 @@ const generateQRCode = async (phone, nickname) => {
   }
 
 class PersonService {
-    async create(req, res) {
+    async login(data) {
+        const user = data.user
+        const password = data.password
+        const cryptoPassword = crypto.createHash('sha1').update(password).digest('hex')
+        const person = await personRepository.findOne({ user })
+        if (person && person.password === cryptoPassword) {
+            const token = jwt.sign({
+                id: person._id,
+                name: person.name,
+            }, Config.secretKey)
+            return { token, userData: { name: person.name } };
+        }
+        return new Error('Accesso negado')
+    }
+
+    async create(req) {
         let person = new Person()
         person.nickname = req.body.nickname
         person.name = req.body.name
@@ -66,6 +83,15 @@ class PersonService {
             throw error
         }
     }
+
+    async updatePerson(id, data) {
+        try {
+            return personRepository.updatePerson(id, data)
+        } catch(error) {
+            throw error
+        }
+    }
+
 
     async findBirthdayOfDay() {
         let date = new Date()

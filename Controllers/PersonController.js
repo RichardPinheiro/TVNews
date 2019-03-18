@@ -1,8 +1,17 @@
 const PersonService = require('../Services/PersonService')
 const personService = new PersonService()
 
+exports.login = async (req, res) => {
+	try {
+		const userToken = await personService.login(req.body)
+		res.json(userToken)
+	} catch (e) {
+		res.status(500).json(e)
+	}
+}
+
 exports.create = async (req, res) => {
-	res.json(await personService.create(req, res))
+	res.json(await personService.create(req))
 }
 
 exports.find = async (req, res) => {
@@ -10,7 +19,11 @@ exports.find = async (req, res) => {
 }
 
 exports.deleteOne = async (req, res) => {
-	res.json(await personService.deleteOnePerson(req.params.id))
+	res.json(await personService.deleteOnePerson(req.params.id, req.body))
+}
+
+exports.patch = async (req, res) => {
+	res.json(await personService.updatePerson(req.params.id, req.body))
 }
 
 exports.birthdaysOfDay = async (req, res) => {

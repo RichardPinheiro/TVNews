@@ -30,6 +30,9 @@ class Config {
     static get env() {
         return getProperty("app.env", process.env.NODE_ENV || "development")
     }
+    static get key() {
+        return getProperty('key', process.env.KEY)
+    }
 
     /**
      * @readonly

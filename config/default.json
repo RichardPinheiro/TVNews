@@ -1,7 +1,7 @@
 {
   "app": {
     "port": 8080,
-    "key": "secret",
+    "key": "N3wW@yTV",
     "env": "development",
     "protocol": "http",
     "host": "localhost"
