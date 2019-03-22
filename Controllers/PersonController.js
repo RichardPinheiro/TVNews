@@ -11,7 +11,13 @@ exports.login = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-	res.json(await personService.create(req))
+	try {
+		const data = await personService.create(req)
+		res.json(data)
+	} catch (e) {
+		res.status(500).json(e)
+	}
+	res.json()
 }
 
 exports.find = async (req, res) => {

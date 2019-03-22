@@ -44,10 +44,12 @@ class PersonService {
 
     async create(req) {
         let person = new Person()
+        if (req.body.user && req.body.password) {
+            person.user = req.body.user
+            person.password = crypto.createHash('sha1').update(req.body.password).digest('hex')
+        }
         person.nickname = req.body.nickname
         person.name = req.body.name
-        person.user = req.body.user
-        person.password = crypto.createHash('sha1').update(req.body.password).digest('hex')
         person.birthday = req.body.birthday
         person.order = ((req.body.birthday.month.number * 100) + req.body.birthday.day)
         person.phone = req.body.phone

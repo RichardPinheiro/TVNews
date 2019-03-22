@@ -1,11 +1,16 @@
 let  mongoose = require('mongoose')
-let uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator')
 
 let personSchema = mongoose.Schema({
     nickname: { type: String, required: true },
     name: { type: String, required: true },
-    user: { type: String, unique: true },
-    password: { type: String },
+    user: {
+        type: String,
+        unique: true,
+        partialFilterExpression: { user: { $type: 'string' } },
+        default: null,
+    },
+    password: { type: String, default: null },
     birthday: { type: Object, required: true },
     order: { type: Number },
     phone: { type: String, required: true }, 
@@ -15,7 +20,8 @@ let personSchema = mongoose.Schema({
     qrcode: { type: String }
 })
 
-let Person = mongoose.model('person', personSchema)
-module.exports = Person;
+personSchema.plugin(uniqueValidator)
 
-personSchema.plugin(uniqueValidator);
+let Person = mongoose.model('person', personSchema)
+
+module.exports = Person;
