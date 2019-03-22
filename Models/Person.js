@@ -20,7 +20,7 @@ let personSchema = mongoose.Schema({
     qrcode: { type: String }
 })
 
-personSchema.plugin(uniqueValidator)
+// personSchema.plugin(uniqueValidator)
 
 let Person = mongoose.model('person', personSchema)
 
