@@ -89,8 +89,10 @@ class PersonService {
     }
 
     async updatePerson(id, data) {
-        try { 
-            // data.password = crypto.createHash('sha1').update(data.password).digest('hex')
+        try {
+            if(data.password){ 
+                data.password = crypto.createHash('sha1').update(data.password).digest('hex')
+            }
             return personRepository.updatePerson(id, data)
         } catch(error) {
             throw error
