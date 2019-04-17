@@ -26,11 +26,15 @@ exports.create = async (req, res) => {
 }
 
 exports.get = async (req, res) => {
-	res.json(await fileService.findFile(req.params.fileId))
+	res.json(await fileService.findFile(req.params.id))
+}
+
+exports.deleteOne = async (req, res) => {
+  res.json(await fileService.deleteOne(req.params.id))
 }
 
 exports.serve = async (req, res) => {
-    const  file = await fileService.findFile(req.params.fileId)
+    const  file = await fileService.findFile(req.params.id)
     const bufferedFile = Buffer.from(file.url, 'base64')
       res.writeHead(200, {
         'Content-Type': file.contentType,

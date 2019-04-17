@@ -19,6 +19,14 @@ class FilesService {
             throw error
         }
     }
+
+    async deleteOne(fileId) {
+        try {
+            return filesRepository.deleteOne(fileId)
+        } catch(error) {
+            throw error
+        }
+    }
 }
 
 module.exports = FilesService

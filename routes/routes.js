@@ -4,6 +4,7 @@ const personController = require('../Controllers/PersonController')
 const newsController = require('../Controllers/NewsController')
 const phrasesController = require('../Controllers/PhrasesController')
 const filesController = require('../Controllers/FilesController')
+const backgroundController = require('../Controllers/BackgroundController')
 
 router.route('/person/save').post(personController.create)
 router.route('/person/login').post(personController.login)
@@ -19,8 +20,13 @@ router.route('/phrases/save').post(phrasesController.create)
 router.route('/phrases').get(phrasesController.phrases)
 router.route('/phrases/:id').delete(phrasesController.deleteOne)
 
-router.route('/files/:fileId').get(filesController.get)
+router.route('/files/:id').get(filesController.get)
 router.route('/files').post(filesController.create)
-router.route('/files/:fileId/serve').get(filesController.serve)
+router.route('/files/:id').delete(filesController.deleteOne)
+router.route('/files/:id/serve').get(filesController.serve)
+
+router.route('/backgrounds').post(backgroundController.create)
+router.route('/backgrounds').get(backgroundController.find)
+router.route('/backgrounds/:id').delete(backgroundController.deleteOne)
 
 module.exports = router

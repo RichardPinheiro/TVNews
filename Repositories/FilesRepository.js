@@ -15,6 +15,10 @@ class FilesRepository {
     async findFile(fileId) {
         return File.findOne({ _id: fileId })
     }
+
+    async deleteOne(fileId) {
+        return File.deleteOne({ _id: fileId })
+    }
 }
 
 module.exports = FilesRepository
