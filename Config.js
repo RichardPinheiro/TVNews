@@ -34,6 +34,10 @@ class Config {
         return getProperty('key', process.env.KEY)
     }
 
+    static get corsOrigins() {
+        return getProperty("app.corsOrigin", process.env.CORS_ORIGIN || [])
+    }
+
     /**
      * @readonly
      * @static
