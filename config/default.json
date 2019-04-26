@@ -4,8 +4,7 @@
     "key": "N3wW@yTV",
     "env": "development",
     "protocol": "http",
-    "host": "localhost",
-    "corsOrigins": ["http://localhost:8081, http://localhost:8083"]
+    "host": "localhost"
   },
 
   "appUrl": "http://localhost:8080",
