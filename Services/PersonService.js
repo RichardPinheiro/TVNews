@@ -7,7 +7,6 @@ const Person = require('../Models/Person')
 const FilesService = require('../Services/FilesService')
 const Config = require('../Config')
 
-const filesService = new FilesService()
 const personRepository = new PersonRepository()
 const orderOfDecemberMonth = ((12 * 100) + 31)
 const orderOfJenuaryMonth = ((1 * 100) + 1)
@@ -50,7 +49,10 @@ class PersonService {
         }
         person.nickname = req.body.nickname
         person.name = req.body.name
-        person.birthday = req.body.birthday
+        person.birthday = {
+            day: req.body.birthday.day,
+            month: req.body.birthday.month.number,
+        }
         person.order = ((req.body.birthday.month.number * 100) + req.body.birthday.day)
         person.phone = req.body.phone
         person.squad = req.body.squad
@@ -68,6 +70,13 @@ class PersonService {
             picture,
             backgrounPicture,
             qrcode,
+            birthday: {
+                day: person.birthday.day,
+                month: {
+                    number: person.birthday.month,
+                    name: moment.months(person.birthday.month -1).substring(0, 3),
+                },
+            }
         })
     }
 
@@ -93,7 +102,11 @@ class PersonService {
             if(data.password){ 
                 data.password = crypto.createHash('sha1').update(data.password).digest('hex')
             }
-            return personRepository.updatePerson(id, data)
+            const birthday = {
+                day: data.birthday.day,
+                month: data.birthday.month.number,
+            }
+            return personRepository.updatePerson(id, Object.assign({}, data, { birthday }))
         } catch(error) {
             throw error
         }

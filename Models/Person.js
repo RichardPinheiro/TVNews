@@ -11,7 +11,10 @@ let personSchema = mongoose.Schema({
         default: null,
     },
     password: { type: String, default: null },
-    birthday: { type: Object, required: true },
+    birthday: {
+        day: { type: Number, default: null },
+        month: { type: Number, default: null }
+    },
     order: { type: Number },
     phone: { type: String, required: true }, 
     squad: { type: String, required: true },

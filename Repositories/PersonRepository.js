@@ -1,9 +1,5 @@
 const Person = require('../Models/Person')
 class PersonRepository {
-    async login(user) {
-        // TODO: buscar pessoa atraves do user
-    }
-
     async savePerson(person) {
         return new Promise((resolve, reject) => {
             person.save((error, person) => {
