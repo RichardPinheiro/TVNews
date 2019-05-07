@@ -120,7 +120,8 @@ class PersonService {
                 birthDays.push(...await personRepository.findBirthdayOfDay(moment(date).date() +1, moment(date).month() +1))
                 birthDays.push(...await personRepository.findBirthdayOfDay(moment(date).date() +2, moment(date).month() +1))
             } 
-            return Promise.all(birthDays.map(this.fillPerson))
+            const birthdays = await Promise.all(birthDays.map(await this.fillPerson))
+            return birthdays
         } catch(error) {
             throw error
         }
@@ -132,20 +133,20 @@ class PersonService {
             let nextBirthdays = await personRepository.findNextBirthdays(this.getDefaultOrder())
 
             return {
-                previous: await Promise.all(this.getPreviusBirthdays(previusBirthdays).sort().map(this.fillPerson)),
-                next: await Promise.all(this.getNextBirthdays(nextBirthdays).map(this.fillPerson))
+                previous: await Promise.all(await this.getPreviusBirthdays(previusBirthdays).sort().map(await this.fillPerson)),
+                next: await Promise.all(await this.getNextBirthdays(nextBirthdays).map(await this.fillPerson))
             }
         } catch(error) {
             throw error
         }
     }
 
-    getPreviusBirthdays(previusBirthdays) {
-        return previusBirthdays.length ? previusBirthdays : personRepository.findPreviusBirthdays(this.getOrderLessThan())
+    async getPreviusBirthdays(previusBirthdays) {
+        return previusBirthdays.length ? previusBirthdays : await personRepository.findPreviusBirthdays(this.getOrderLessThan())
     }
 
-    getNextBirthdays(nextBirthdays) {
-        return nextBirthdays.length ? nextBirthdays : personRepository.findNextBirthdays(this.getOrderGreaterThan())
+    async getNextBirthdays(nextBirthdays) {
+        return nextBirthdays.length ? nextBirthdays : await personRepository.findNextBirthdays(this.getOrderGreaterThan())
     }
 
     getOrderLessThan() {

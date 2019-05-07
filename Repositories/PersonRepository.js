@@ -23,7 +23,7 @@ class PersonRepository {
     }
 
     findBirthdayOfDay(day, month) {
-        return Person.find().where('birthday.day').equals(day).where('birthday.month.number').equals(month)
+        return Person.find().where('birthday.day').equals(day).where('birthday.month').equals(month)
     }
 
     updatePerson(id, data) {
