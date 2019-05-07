@@ -132,11 +132,11 @@ class PersonService {
             let previusBirthdays = await personRepository.findPreviusBirthdays(this.getDefaultOrder())
             let nextBirthdays = await personRepository.findNextBirthdays(this.getDefaultOrder())
 
-            let previous = await Promise.all(this.getPreviusBirthdays(previusBirthdays))
-            previous = previous.sort().map(await this.fillPerson)
+            let previous = await this.getPreviusBirthdays(previusBirthdays)
+            previous = await Promise.all(previous.sort().map(await this.fillPerson))
 
-            let next = await Promise.all(this.getNextBirthdays(nextBirthdays))
-            next = next.map(await this.fillPerson)
+            let next = await this.getNextBirthdays(nextBirthdays)
+            next = await Promise.all(next.map(await this.fillPerson))
 
             return {
                 previous,
