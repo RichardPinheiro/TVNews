@@ -12,11 +12,15 @@ const getUrlFromFileId = (fileId) => {
 }
 
 class BackgroundService {
-    async create({ fileId }) {
+    async create({ fileId, exibitionRangeDate }) {
         if (!fileId) throw new Error('BadRequest - empty data')
+        console.log(exibitionRangeDate)
         try {
             let background = new Background()
             background.fileId = fileId
+            if (exibitionRangeDate) {
+                background.exibitionRangeDate = exibitionRangeDate;
+            }
             return backgroundRepository.saveBackground(background)
         } catch (e) {
             throw e
@@ -32,8 +36,8 @@ class BackgroundService {
 
     async findBackground() {
         try {
-            const people = await backgroundRepository.findBackground()
-            return Promise.all(people.map(this.fillBackground))
+            const backgrounds = await backgroundRepository.findBackground()
+            return Promise.all(backgrounds.map(this.fillBackground))
         } catch(error) {
             throw error
         }
