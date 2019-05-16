@@ -1,4 +1,5 @@
 const moment = require('moment')
+moment.locale('pt-BR');
 const QRCode = require('qrcode')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
