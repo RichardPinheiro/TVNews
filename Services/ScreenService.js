@@ -1,4 +1,5 @@
 const moment = require('moment')
+moment.locale('pt-BR')
 const BackGroundService = require('./BackgroundService')
 const PersonService = require('./PersonService')
 
