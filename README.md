@@ -39,7 +39,7 @@ mongodb
 ```
 
 ## API
-* An example on how to use the application API. In this example I will be using [Postman](https://www.getpostman.com/) to test the API.
+* An example on how to use the application API. In this example I will be using [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/download/)to test the API.
 ```
 1) Select 'POST' request
 
@@ -116,4 +116,4 @@ mongodb
 
 ## Authors
 
-* **Richard Pinheiro** - [RichardPinheiro](https://github.com/RichardPinheiro)
+* **Richard Pinheiro** - [GitHub](https://github.com/RichardPinheiro)
