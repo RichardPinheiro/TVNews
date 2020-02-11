@@ -1,6 +1,6 @@
-# Api Nw News
+# Api Tv News
 
-* Api Nw news provides birthdays for all partners, internal company news and more
+* Api Tv news provides birthdays for all partners, internal company news and more
 
 ### Prerequisites
 

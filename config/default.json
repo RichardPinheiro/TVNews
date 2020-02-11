@@ -10,6 +10,6 @@
   "appUrl": "http://localhost:8080",
 
   "database": {
-    "mongodb": "mongodb://localhost:27017/nwnewsdb"
+    "mongodb": "mongodb://localhost:27017/tvnewsdb"
   }
 }

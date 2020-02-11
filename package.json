@@ -1,7 +1,7 @@
 {
-  "name": "backend-nwnews",
+  "name": "tvnews-backend",
   "version": "1.0.0",
-  "description": "Api Nw News",
+  "description": "Api Tv News",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,8 +23,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://igorfastroninw@bitbucket.org/igorfastroninw/tvnw-api.git"
+    "url": "https://github.com/RichardPinheiro/TVNews"
   },
-  "homepage": "https://bitbucket.org/igorfastroninw/tvnw-api#readme",
+  "homepage": "https://github.com/RichardPinheiro",
   "devDependencies": {}
 }
